@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>socket</title>
+</head>
+
+<body>
+
+
+    <button id="sendBtn">发送消息</button>
+    <button id="leaveBtn">离开</button>
+    <button id="hello">进入</button>
+
+</body>
+<script type="text/javascript" src="./socket.js"></script>
+<script type="text/javascript">
+
+</script>
+<script type="text/javascript">
+    var socket = io.connect('localhost:8000'),//与服务器进行连接
+        send = document.getElementById('sendBtn'),
+        leave = document.getElementById('leaveBtn'),
+    hi = document.getElementById('hi'),
+    hello = document.getElementById('hello');
+
+    send.onclick = function () {
+        socket.emit('send', '发送消息!');
+    }
+    hello.onclick = function () {
+        socket.emit('hello', { 'name': 'LLLLL' });
+    }
+    leave.onclick = function () {
+        socket.emit('leave', 'leave');
+    }
+    //接收来自服务端信的息事件jr
+    socket.on('jr', function (msg) {
+        alert(msg)
+    })
+    //
+
+
+
+</script>
+
+</html>
